@@ -30,7 +30,7 @@ LIBFT_LIB	=	libft/libft.a
 
 SRCBASE		=	\
 				list_salle.c												\
-				read.c
+				main.c
 
 INCBASE		=	\
 				ft_printf.h													\
