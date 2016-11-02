@@ -6,11 +6,11 @@
 #    By: jelefebv <jelefebv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/20 15:14:26 by jelefebv          #+#    #+#              #
-#    Updated: 2016/11/02 11:42:06 by jelefebv         ###   ########.fr        #
+#    Updated: 2016/11/02 17:47:11 by jelefebv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	lem_in
+NAME		=	lem-in
 
 NAMEBASE    =   $(shell basename $(NAME))
 
@@ -31,7 +31,9 @@ LIBFT_LIB	=	libft/libft.a
 SRCBASE		=	\
 				list_salle.c												\
 				list_tube.c													\
-				main.c
+				main.c														\
+				print.c														\
+				struct.c
 
 INCBASE		=	\
 				ft_printf.h													\
