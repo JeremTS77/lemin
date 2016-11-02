@@ -6,7 +6,7 @@
 /*   By: jeremy <jeremy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 16:15:20 by jeremy            #+#    #+#             */
-/*   Updated: 2016/10/29 19:25:56 by jeremy           ###   ########.fr       */
+/*   Updated: 2016/11/02 11:41:59 by jelefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,11 @@ typedef struct		s_lem
 	t_tube			*tube;
 }					t_lem;
 
-t_salle		*ft_new_salle(const char *str);
-int			ft_push_back_salle(t_salle **salle, const char *str);
-void		ft_print_salle(t_salle *salle);
+t_salle				*ft_new_salle(const char *str);
+t_tube				*ft_new_tube(const char *str);
+int					ft_push_back_salle(t_salle **salle, const char *str);
+int					ft_push_back_tube(t_tube **tube, const char *str);
+void				ft_print_salle(t_salle *salle);
+void				ft_print_tube(t_tube *tube);
 
 #endif
