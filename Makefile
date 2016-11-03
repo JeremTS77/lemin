@@ -16,7 +16,7 @@ NAMEBASE    =   $(shell basename $(NAME))
 
 CC			=	gcc
 
-FLAGS		=	-Wall -Wextra -Werror -O3
+FLAGS		=	-Wall -Wextra -Werror -ggdb
 
 SRCDIR		=	srcs/
 
