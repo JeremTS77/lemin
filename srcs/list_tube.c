@@ -6,20 +6,19 @@
 /*   By: jelefebv <jelefebv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 11:28:54 by jelefebv          #+#    #+#             */
-/*   Updated: 2016/11/02 11:46:08 by jelefebv         ###   ########.fr       */
+/*   Updated: 2016/11/03 17:14:26 by jelefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 #include "libft.h"
-#include "ft_printf.h"
 
 t_tube	*ft_new_tube(const char *str)
 {
 	t_tube	*new;
 	char	**tmp;
 
-	tmp = ft_strsplit(str, ' ');
+	tmp = ft_strsplit(str, '-');
 	if (!(new = (t_tube *)malloc(sizeof(t_tube))))
 		return (NULL);
 	new->enter = NULL;
@@ -60,16 +59,4 @@ int		ft_push_back_tube(t_tube **tube, const char *str)
 		}
 	}
 	return (0);
-}
-
-void	ft_print_tube(t_tube *tube)
-{
-	if (tube)
-	{
-		while (tube)
-		{
-			ft_printf("enter : %s, exit : %s\n", tube->enter, tube->exit);
-			tube = tube->next;
-		}
-	}
 }

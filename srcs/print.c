@@ -6,7 +6,7 @@
 /*   By: jelefebv <jelefebv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 16:25:12 by jelefebv          #+#    #+#             */
-/*   Updated: 2016/11/02 21:24:10 by jeremy           ###   ########.fr       */
+/*   Updated: 2016/11/03 18:16:52 by jelefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 void	ft_print_lemin(t_lem *lem)
 {
-	ft_printf("\n\nprint with print_lemin : \n\n");
-	ft_printf("%d\n##start\n%s %d %d\n##end\n%s %d %d\ncommand :\n", lem->nb_fourmis,
-			lem->start, lem->startx, lem->starty, lem->end, lem->endx,
-			lem->endy);
+	ft_printf("fourmis nb :%d\n", lem->nb_fourmis);
+	ft_printf("##start\n%s %d %d\n", lem->start, lem->startx, lem->starty);
+	ft_printf("##end\n%s %d %d\n", lem->end, lem->endx, lem->endy);
+	ft_printf("command :\n");
 	while (lem->command)
 	{
 		ft_printf("##%s\n", lem->command->command);
@@ -27,19 +27,19 @@ void	ft_print_lemin(t_lem *lem)
 	ft_printf("comment :\n");
 	while (lem->comment)
 	{
-		ft_printf("##%s\n", lem->comment->comment);
+		ft_printf("#%s\n", lem->comment->comment);
 		lem->comment = lem->comment->next;
 	}
 	ft_printf("room :\n");
 	while (lem->map)
 	{
-		ft_printf("name : %s, x : %d, y %d\n", lem->map->name, lem->map->x, lem->map->y);
+		ft_printf("%s %d %d\n", lem->map->name, lem->map->x, lem->map->y);
 		lem->map = lem->map->next;
 	}
 	ft_printf("tube :\n");
 	while (lem->tube)
 	{
-		ft_printf("enter : %s, exit : %s\n", lem->tube->enter, lem->tube->exit);
+		ft_printf("%s-%s\n", lem->tube->enter, lem->tube->exit);
 		lem->tube = lem->tube->next;
 	}
 }

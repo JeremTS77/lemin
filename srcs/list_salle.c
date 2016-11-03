@@ -6,12 +6,11 @@
 /*   By: jeremy <jeremy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 17:10:34 by jeremy            #+#    #+#             */
-/*   Updated: 2016/11/02 11:42:01 by jelefebv         ###   ########.fr       */
+/*   Updated: 2016/11/03 18:27:31 by jelefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "ft_printf.h"
 #include "lemin.h"
 
 t_salle		*ft_new_salle(const char *str)
@@ -23,7 +22,7 @@ t_salle		*ft_new_salle(const char *str)
 	if (!(new = (t_salle *)malloc(sizeof(t_salle))))
 		return (NULL);
 	new->name = NULL;
-	if (tmp[0] && tmp[1] && tmp[2] && !tmp[3])
+	if (tmp[0] && tmp[1] && tmp[2] && !tmp[3] && tmp[0][0] != 'L')
 	{
 		new->name = ft_strdup(tmp[0]);
 		new->x = ft_atoi(tmp[1]);
@@ -60,16 +59,4 @@ int			ft_push_back_salle(t_salle **salle, const char *str)
 		}
 	}
 	return (0);
-}
-
-void		ft_print_salle(t_salle *salle)
-{
-	if (salle)
-	{
-		while (salle)
-		{
-			ft_printf("name : %s, x : %d, y %d\n", salle->name, salle->x, salle->y);
-			salle = salle->next;
-		}
-	}
 }
