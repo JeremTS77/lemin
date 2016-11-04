@@ -6,7 +6,7 @@
 /*   By: jeremy <jeremy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/26 18:46:58 by jeremy            #+#    #+#             */
-/*   Updated: 2016/11/03 18:27:32 by jelefebv         ###   ########.fr       */
+/*   Updated: 2016/11/04 18:19:36 by jelefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,13 @@ void	ft_rec_command(t_lem *lem, const char *tab, const char *ptr)
 	ft_strstrdel(str);
 }
 
-void	ft_construct_struct(t_lem *lem, const char *str)
+void	ft_construct_struct(t_lem *lem, const char *str, char *ptr)
 {
 	char	flag;
 	char	**tab;
-	char	*ptr;
 	int		i;
 
 	flag = -1;
-	ptr = NULL;
 	tab = ft_strsplit(str, '\n');
 	i = 0;
 	while (tab[i])
@@ -62,7 +60,7 @@ void	ft_construct_struct(t_lem *lem, const char *str)
 		else if (flag == 0 && ft_push_back_salle(&(lem->map), ptr) != 0)
 			flag = 1;
 		if (flag == 1)
-			ft_push_back_tube(&(lem->tube), ptr);
+			ft_push_back_tube(&(lem->tube), lem->map, ptr);
 		free(ptr);
 		++i;
 	}
@@ -71,9 +69,11 @@ void	ft_construct_struct(t_lem *lem, const char *str)
 int		main(void)
 {
 	char	*str;
+	char	*ptr;
 	int		r;
 	t_lem	lst;
 
+	ptr = NULL;
 	lst.nb_fourmis = 0;
 	lst.map = NULL;
 	lst.tube = NULL;
@@ -84,7 +84,8 @@ int		main(void)
 	str = ft_strnew(1024);
 	if ((r = read(0, str, 1024)))
 		str[r - 1] = '\0';
-	ft_construct_struct(&lst, str);
+	ft_construct_struct(&lst, str, ptr);
 	ft_print_lemin(&lst);
+	ft_strdel(&str);
 	return (0);
 }
