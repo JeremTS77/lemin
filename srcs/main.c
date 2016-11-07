@@ -6,7 +6,7 @@
 /*   By: jeremy <jeremy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/26 18:46:58 by jeremy            #+#    #+#             */
-/*   Updated: 2016/11/04 18:19:36 by jelefebv         ###   ########.fr       */
+/*   Updated: 2016/11/07 18:09:15 by jelefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 #include "libft.h"
 #include "ft_printf.h"
 
-void	ft_rec_command(t_lem *lem, const char *tab, const char *ptr)
+#include <fcntl.h>
+#include "get_next_line.h"
+
+void	ft_rec_command(t_lem *lem, const char *tab, const char *ptr, char *flag)
 {
 	char	**str;
 
@@ -36,44 +39,40 @@ void	ft_rec_command(t_lem *lem, const char *tab, const char *ptr)
 	else
 		push_back_command(&(lem->command), tab + 2);
 	ft_strstrdel(str);
+	*flag = 0;
 }
 
-void	ft_construct_struct(t_lem *lem, const char *str, char *ptr)
+void	ft_construct_struct(t_lem *lem)
 {
 	char	flag;
-	char	**tab;
-	int		i;
+	char	*str;
+	char	*ptr;
 
 	flag = -1;
-	tab = ft_strsplit(str, '\n');
-	i = 0;
-	while (tab[i])
+	str = NULL;
+	ptr = NULL;
+	while (get_next_line(0, &str) > 0)
 	{
-		ptr = ft_strtrim(tab[i]);
-		if (flag == -1 && lem->nb_fourmis <= 0 && ft_atoi(ptr) > 0 &&
-				(lem->nb_fourmis = ft_atoi(ptr)))
+		if (flag == -2)
+			ft_rec_command(lem, ptr, str, &flag);
+		flag = (ft_strncmp(str, "##", ft_strlen("##")) == 0 &&
+				(ptr = ft_strdup(str))) ? -2 : flag;
+		if (flag == -1 && lem->nb_fourmis <= 0 && ft_atoi(str) > 0 &&
+				(lem->nb_fourmis = ft_atoi(str)))
 			flag = 0;
-		else if (ptr[0] == '#' && ptr[1] == '#')
-			ft_rec_command(lem, tab[i], tab[i + 1]);
-		else if (ptr[0] == '#' && ptr[1] != '#')
-			push_back_comment(&(lem->comment), ptr + 1);
-		else if (flag == 0 && ft_push_back_salle(&(lem->map), ptr) != 0)
+		else if (str[0] == '#' && str[1] != '#')
+			push_back_comment(&(lem->comment), str + 1);
+		else if (flag == 0 && ft_push_back_salle(&(lem->map), str) != 0)
 			flag = 1;
 		if (flag == 1)
-			ft_push_back_tube(&(lem->tube), lem->map, ptr);
-		free(ptr);
-		++i;
+			ft_push_back_tube(&(lem->tube), lem->map, str);
 	}
 }
 
 int		main(void)
 {
-	char	*str;
-	char	*ptr;
-	int		r;
 	t_lem	lst;
 
-	ptr = NULL;
 	lst.nb_fourmis = 0;
 	lst.map = NULL;
 	lst.tube = NULL;
@@ -81,11 +80,7 @@ int		main(void)
 	lst.command = NULL;
 	lst.start = NULL;
 	lst.end = NULL;
-	str = ft_strnew(1024);
-	if ((r = read(0, str, 1024)))
-		str[r - 1] = '\0';
-	ft_construct_struct(&lst, str, ptr);
+	ft_construct_struct(&lst);
 	ft_print_lemin(&lst);
-	ft_strdel(&str);
 	return (0);
 }
