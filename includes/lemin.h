@@ -6,7 +6,7 @@
 /*   By: jeremy <jeremy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 16:15:20 by jeremy            #+#    #+#             */
-/*   Updated: 2016/11/04 11:19:56 by jelefebv         ###   ########.fr       */
+/*   Updated: 2016/11/08 18:17:40 by jelefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,9 @@ int						ft_push_back_tube(t_tube **tube, const t_salle *room,
 void					push_back_comment(t_comment **comment, const char *str);
 void					push_back_command(t_command **command, const char *str);
 void					ft_print_lemin(t_lem *lem);
+void	ft_clear_comment(t_comment **lst);
+void	ft_clear_command(t_command **lst);
+void	ft_clear_salle(t_salle **lst);
+void	ft_clear_tube(t_tube **lst);
 
 #endif

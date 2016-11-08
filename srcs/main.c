@@ -6,22 +6,24 @@
 /*   By: jeremy <jeremy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/26 18:46:58 by jeremy            #+#    #+#             */
-/*   Updated: 2016/11/07 18:09:15 by jelefebv         ###   ########.fr       */
+/*   Updated: 2016/11/08 18:18:16 by jelefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <fcntl.h>
 #include "lemin.h"
 #include "libft.h"
 #include "ft_printf.h"
-
-#include <fcntl.h>
 #include "get_next_line.h"
 
 void	ft_rec_command(t_lem *lem, const char *tab, const char *ptr, char *flag)
 {
+	char	*tmp;
 	char	**str;
 
-	str = ft_strsplit(ft_strtrim(ptr), ' ');
+	tmp = ft_strtrim(ptr);
+	str = ft_strsplit(tmp, ' ');
+	ft_strdel(&tmp);
 	if (ft_strncmp(tab, "##start", ft_strlen("##start")) == 0 && !lem->start &&
 			str[0] && str[1] && str[2] && !str[3])
 	{
@@ -55,6 +57,7 @@ void	ft_construct_struct(t_lem *lem)
 	{
 		if (flag == -2)
 			ft_rec_command(lem, ptr, str, &flag);
+		ft_strdel(&ptr);
 		flag = (ft_strncmp(str, "##", ft_strlen("##")) == 0 &&
 				(ptr = ft_strdup(str))) ? -2 : flag;
 		if (flag == -1 && lem->nb_fourmis <= 0 && ft_atoi(str) > 0 &&
@@ -66,7 +69,18 @@ void	ft_construct_struct(t_lem *lem)
 			flag = 1;
 		if (flag == 1)
 			ft_push_back_tube(&(lem->tube), lem->map, str);
+		ft_strdel(&str);
 	}
+}
+
+void	ft_clear_struct(t_lem *lem)
+{
+	ft_strdel(&lem->start);
+	ft_strdel(&lem->end);
+	ft_clear_tube(&lem->tube);
+	ft_clear_salle(&lem->map);
+	ft_clear_command(&lem->command);
+	ft_clear_comment(&lem->comment);
 }
 
 int		main(void)
@@ -82,5 +96,7 @@ int		main(void)
 	lst.end = NULL;
 	ft_construct_struct(&lst);
 	ft_print_lemin(&lst);
+	ft_clear_struct(&lst);
+	sleep(500);
 	return (0);
 }

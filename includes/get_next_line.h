@@ -6,7 +6,7 @@
 /*   By: jelefebv <jelefebv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/25 17:23:29 by jelefebv          #+#    #+#             */
-/*   Updated: 2015/02/27 16:14:45 by jelefebv         ###   ########.fr       */
+/*   Updated: 2016/11/08 16:56:50 by jelefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <sys/uio.h>
 # include <unistd.h>
 
-# define BUFF_SIZE 1
+# define BUFF_SIZE 1024
 
 int		get_next_line(int const fd, char **line);
 
