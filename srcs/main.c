@@ -6,7 +6,7 @@
 /*   By: jeremy <jeremy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/26 18:46:58 by jeremy            #+#    #+#             */
-/*   Updated: 2016/11/08 18:18:16 by jelefebv         ###   ########.fr       */
+/*   Updated: 2016/11/09 17:49:01 by jelefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,5 @@ int		main(void)
 	ft_construct_struct(&lst);
 	ft_print_lemin(&lst);
 	ft_clear_struct(&lst);
-	sleep(500);
 	return (0);
 }

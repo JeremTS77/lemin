@@ -6,7 +6,7 @@
 /*   By: jelefebv <jelefebv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/08 17:57:41 by jelefebv          #+#    #+#             */
-/*   Updated: 2016/11/08 18:22:37 by jelefebv         ###   ########.fr       */
+/*   Updated: 2016/11/09 17:32:57 by jelefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	ft_clear_tube(t_tube **lst)
 		free(begin);
 		begin = next;
 	}
+	begin = NULL;
+	free(*lst);
 	*lst = NULL;
 }
 
@@ -43,6 +45,8 @@ void	ft_clear_salle(t_salle **lst)
 		free(begin);
 		begin = next;
 	}
+	begin = NULL;
+	free(*lst);
 	*lst = NULL;
 }
 
@@ -59,6 +63,8 @@ void	ft_clear_command(t_command **lst)
 		free(begin);
 		begin = next;
 	}
+	begin = NULL;
+	free(*lst);
 	*lst = NULL;
 }
 
@@ -75,5 +81,7 @@ void	ft_clear_comment(t_comment **lst)
 		free(begin);
 		begin = next;
 	}
+	begin = NULL;
+	free(*lst);
 	*lst = NULL;
 }
