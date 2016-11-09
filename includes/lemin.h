@@ -6,7 +6,7 @@
 /*   By: jeremy <jeremy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 16:15:20 by jeremy            #+#    #+#             */
-/*   Updated: 2016/11/09 17:43:53 by jelefebv         ###   ########.fr       */
+/*   Updated: 2016/11/09 18:01:52 by jelefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct			s_salle
 	char				*name;
 	int					x;
 	int					y;
+	int					weight;
 	struct s_salle		*next;
 }						t_salle;
 
