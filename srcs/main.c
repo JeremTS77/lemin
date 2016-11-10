@@ -6,7 +6,7 @@
 /*   By: jeremy <jeremy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/26 18:46:58 by jeremy            #+#    #+#             */
-/*   Updated: 2016/11/09 17:49:01 by jelefebv         ###   ########.fr       */
+/*   Updated: 2016/11/10 12:41:14 by jelefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ void	ft_construct_struct(t_lem *lem)
 	flag = -1;
 	str = NULL;
 	ptr = NULL;
-	while (get_next_line(0, &str) > 0)
+	int fd = open("map/map.map", O_RDONLY);
+	while (get_next_line(fd, &str) > 0)
 	{
 		if (flag == -2)
 			ft_rec_command(lem, ptr, str, &flag);
@@ -95,6 +96,7 @@ int		main(void)
 	lst.start = NULL;
 	lst.end = NULL;
 	ft_construct_struct(&lst);
+	ft_mark_room(lst.end, lst.tube, lst.map, ft_compte_room(lst.map));
 	ft_print_lemin(&lst);
 	ft_clear_struct(&lst);
 	return (0);

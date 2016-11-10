@@ -6,7 +6,7 @@
 /*   By: jeremy <jeremy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 16:15:20 by jeremy            #+#    #+#             */
-/*   Updated: 2016/11/09 18:01:52 by jelefebv         ###   ########.fr       */
+/*   Updated: 2016/11/10 12:36:49 by jelefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ t_tube					*ft_new_tube(const char *str, const t_salle *room);
 int						ft_push_back_salle(t_salle **salle, const char *str);
 int						ft_push_back_tube(t_tube **tube, const t_salle *room,
 		const char *str);
+int						ft_compte_room(t_salle *room);
 void					push_back_comment(t_comment **comment, const char *str);
 void					push_back_command(t_command **command, const char *str);
 void					ft_print_lemin(t_lem *lem);
@@ -75,5 +76,6 @@ void					ft_clear_comment(t_comment **lst);
 void					ft_clear_command(t_command **lst);
 void					ft_clear_salle(t_salle **lst);
 void					ft_clear_tube(t_tube **lst);
+void					ft_mark_room(char *end, t_tube *begin, t_salle *room, int weight);
 
 #endif
