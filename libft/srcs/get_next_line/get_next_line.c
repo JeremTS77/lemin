@@ -6,13 +6,14 @@
 /*   By: jelefebv <jelefebv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/25 17:23:42 by jelefebv          #+#    #+#             */
-/*   Updated: 2016/11/09 17:51:02 by jelefebv         ###   ########.fr       */
+/*   Updated: 2016/11/14 10:53:55 by jelefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "get_next_line.h"
 #include "libft.h"
+
 int		get_next_line(int const fd, char **line)
 {
 	int				ret;
