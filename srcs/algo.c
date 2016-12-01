@@ -5,101 +5,68 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jelefebv <jelefebv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/04 12:27:11 by jelefebv          #+#    #+#             */
-/*   Updated: 2016/11/10 18:28:55 by jelefebv         ###   ########.fr       */
+/*   Created: 2016/12/01 15:24:47 by jelefebv          #+#    #+#             */
+/*   Updated: 2016/12/01 18:20:30 by jelefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-/*
-   t_tube	*ft_find_tube(const char *name, t_tube *tube)
-   {
-   while (tube)
-   {
-   if (!ft_strcmp(tube->enter == name))
-   return (tube);
-   tube = tube->next;
-   }
-   return (NULL);
-   }
-
-   t_tube	*ft_find_path(const t_tube *begin_tube, t_tube *tube, const char *start,
-   const char *end)
-   {
-   t_tube	*new;
-
-   if (!(tube = ft_find_tube(start, begin_tube)))
-   return (NULL);
-   if (!(new = ft_find_path(begin_tube, tube, tube->exit, end)))
-   return (NULL);
-   }
-   */
-
-int		ft_compte_room(t_salle *room)
+void		ft_count_room(t_salle *room)
 {
-	int		i;
+	t_salle		*tmp;
+	int			i;
 
+	tmp = room;
 	i = 0;
-	while (room)
+	while (tmp)
 	{
-		room = room->next;
+		tmp = tmp->next;
 		++i;
 	}
-	return (i);
-}
-
-void	ft_mark_room(char *end, t_tube *begin, t_salle *room, int weight)
-{
-	t_tube		*tube;
-	t_salle		*lst_room;
-
-	if (end && *end && begin && room && weight >= 0)
+	tmp = room;
+	while (tmp)
 	{
-		tube = begin;
-		lst_room = room;
-		while (tube)
-		{
-			lst_room = room;
-			while (tube && ft_strcmp(tube->exit, end))
-				tube = tube->next;
-			while (lst_room && ft_strcmp(lst_room->name, end))
-				lst_room = lst_room->next;
-			if (tube && lst_room && tube->next)
-			{
-				lst_room->weight = weight;
-				ft_mark_room(tube->exit, begin, room, weight - 1);
-			}
-		}
+		tmp->weight = i;
+		tmp = tmp->next;
 	}
 }
 
-void	ft_mark(const char *end, const char *enter, t_tube *begin, t_salle **room, int weight)
+t_salle		*ft_get_salle(t_salle *room, char *name)
 {
-	t_tube		*tube;
-	t_salle		*salle;
-	char		*current;
-
-	tube = begin;
-	salle = *room;
-	current = ft_strdup(end);
-	while (ft_strcmp(current, enter))
+	while (room)
 	{
-		salle = *room;
-		while (salle && ft_strcmp(current, salle->name))
-			salle = salle->next;
-		salle->weight = weight;
-		while (tube)
-		{
-			if (!ft_strcmp(current, tube->exit))
-			{
-				salle = *room;
-				while (salle && ft_strcmp(tube->enter, salle->name))
-					salle = salle->next;
-				salle->weight = weight - 1;
-			}
-			tube = tube->next;
-		}
+		if (!ft_strcmp(name, room->name))
+			return (room);
+		room = room->next;
 	}
-	ft_strdel(&current);
+	return (NULL);
+}
+
+void		ft_rec(t_lem *lem, char *name, int index)
+{
+	t_salle		*tmp_s;
+	t_tube		*tmp_t;
+
+	tmp_t = lem->tube;
+	while (tmp_t)
+	{
+		if (ft_get_salle(lem->map, name) && !ft_strcmp(tmp_t->enter, name)
+				&& ft_get_salle(lem->map, name)->weight > index)
+		{
+			tmp_s = ft_get_salle(lem->map, name);
+			tmp_s->weight = (index < tmp_s->weight) ? index : tmp_s->weight;
+			ft_rec(lem, tmp_t->exit, index + 1);
+			return ;
+		}
+		else if (ft_get_salle(lem->map, name) && !ft_strcmp(tmp_t->exit, name)
+				&& ft_get_salle(lem->map, name)->weight > index)
+		{
+			tmp_s = ft_get_salle(lem->map, name);
+			tmp_s->weight = (index < tmp_s->weight) ? index : tmp_s->weight;
+			ft_rec(lem, tmp_t->enter, index + 1);
+			return ;
+		}
+		tmp_t = tmp_t->next;
+	}
 }

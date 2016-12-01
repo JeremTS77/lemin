@@ -6,7 +6,7 @@
 #    By: jelefebv <jelefebv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/20 15:14:26 by jelefebv          #+#    #+#              #
-#    Updated: 2016/11/10 12:36:04 by jelefebv         ###   ########.fr        #
+#    Updated: 2016/12/01 18:33:35 by jelefebv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRCBASE		=	\
 				list_tube.c													\
 				main.c														\
 				print.c														\
+				resolv.c													\
 				struct.c
 
 INCBASE		=	\

@@ -6,7 +6,7 @@
 /*   By: jeremy <jeremy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/26 18:46:58 by jeremy            #+#    #+#             */
-/*   Updated: 2016/11/10 12:41:14 by jelefebv         ###   ########.fr       */
+/*   Updated: 2016/12/01 18:33:07 by jelefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,7 @@ void	ft_construct_struct(t_lem *lem)
 	flag = -1;
 	str = NULL;
 	ptr = NULL;
-	int fd = open("map/map.map", O_RDONLY);
-	while (get_next_line(fd, &str) > 0)
+	while (get_next_line(0, &str) > 0)
 	{
 		if (flag == -2)
 			ft_rec_command(lem, ptr, str, &flag);
@@ -70,18 +69,7 @@ void	ft_construct_struct(t_lem *lem)
 			flag = 1;
 		if (flag == 1)
 			ft_push_back_tube(&(lem->tube), lem->map, str);
-		ft_strdel(&str);
 	}
-}
-
-void	ft_clear_struct(t_lem *lem)
-{
-	ft_strdel(&lem->start);
-	ft_strdel(&lem->end);
-	ft_clear_tube(&lem->tube);
-	ft_clear_salle(&lem->map);
-	ft_clear_command(&lem->command);
-	ft_clear_comment(&lem->comment);
 }
 
 int		main(void)
@@ -96,8 +84,9 @@ int		main(void)
 	lst.start = NULL;
 	lst.end = NULL;
 	ft_construct_struct(&lst);
-	ft_mark_room(lst.end, lst.tube, lst.map, ft_compte_room(lst.map));
-	ft_print_lemin(&lst);
-	ft_clear_struct(&lst);
+	ft_count_room(lst.map);
+	ft_rec(&lst, lst.start, 0);
+	ft_check_error(&lst);
+	ft_print_lemin(lst);
 	return (0);
 }
