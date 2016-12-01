@@ -6,7 +6,7 @@
 /*   By: jeremy <jeremy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/26 18:46:58 by jeremy            #+#    #+#             */
-/*   Updated: 2016/12/01 18:33:07 by jelefebv         ###   ########.fr       */
+/*   Updated: 2016/12/01 23:22:27 by jeremy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,9 @@ void	ft_construct_struct(t_lem *lem)
 int		main(void)
 {
 	t_lem	lst;
+	int		countroom;
 
+	countroom = 0;
 	lst.nb_fourmis = 0;
 	lst.map = NULL;
 	lst.tube = NULL;
@@ -84,9 +86,9 @@ int		main(void)
 	lst.start = NULL;
 	lst.end = NULL;
 	ft_construct_struct(&lst);
-	ft_count_room(lst.map);
+	ft_count_room(lst.map, &countroom);
 	ft_rec(&lst, lst.start, 0);
-	ft_check_error(&lst);
+	ft_check_error(&lst, &countroom);
 	ft_print_lemin(lst);
 	return (0);
 }

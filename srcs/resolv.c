@@ -6,7 +6,7 @@
 /*   By: jelefebv <jelefebv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 17:56:58 by jelefebv          #+#    #+#             */
-/*   Updated: 2016/12/01 18:44:16 by jelefebv         ###   ########.fr       */
+/*   Updated: 2016/12/01 23:27:34 by jeremy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void ft_putendl_fd_exit(const char *error, int fd)
 	exit(0);
 }
 
-void	ft_check_error(t_lem *lem)
+void	ft_check_error(t_lem *lem, int *c)
 {
 	int			i;
 	int			j;
@@ -33,19 +33,20 @@ void	ft_check_error(t_lem *lem)
 		ft_putendl_fd_exit("ERROR", 2);
 	if (!lem->end || !*lem->end || !lem->map || !lem->tube)
 		ft_putendl_fd_exit("ERROR", 2);
-	j = ft_get_salle(lem->map, lem->end)->weight;
-	while (i <= j)
-	{
-		while (room)
-		{
-			if (room->weight == i)
-			{
-				room = lem->map;
-				++i;
-			}
-			room = room->next;
-		}
-		if (i == j)
+	if (ft_get_salle(lem->map, lem->end)->weight >= *c)
 			ft_putendl_fd_exit("ERROR", 2);
-	}
+//	while (i <= j)
+//	{
+//		while (room)
+//		{
+//			if (room->weight == i)
+//			{
+//				room = lem->map;
+//				++i;
+//			}
+//			room = room->next;
+//		}
+//		if (i == j)
+//			ft_putendl_fd_exit("ERROR", 2);
+//	}
 }

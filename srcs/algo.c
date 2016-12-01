@@ -6,13 +6,13 @@
 /*   By: jelefebv <jelefebv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 15:24:47 by jelefebv          #+#    #+#             */
-/*   Updated: 2016/12/01 18:20:30 by jelefebv         ###   ########.fr       */
+/*   Updated: 2016/12/01 23:23:38 by jeremy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-void		ft_count_room(t_salle *room)
+void		ft_count_room(t_salle *room, int *c)
 {
 	t_salle		*tmp;
 	int			i;
@@ -27,9 +27,10 @@ void		ft_count_room(t_salle *room)
 	tmp = room;
 	while (tmp)
 	{
-		tmp->weight = i;
+		tmp->weight = i + 1;
 		tmp = tmp->next;
 	}
+	*c = i;
 }
 
 t_salle		*ft_get_salle(t_salle *room, char *name)
