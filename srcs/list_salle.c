@@ -6,7 +6,7 @@
 /*   By: jeremy <jeremy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 17:10:34 by jeremy            #+#    #+#             */
-/*   Updated: 2016/11/09 18:02:15 by jelefebv         ###   ########.fr       */
+/*   Updated: 2016/12/05 12:07:35 by jelefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_salle		*ft_new_salle(const char *str)
 	new->name = NULL;
 	if (tmp[0] && tmp[1] && tmp[2] && !tmp[3] && tmp[0][0] != 'L')
 	{
-		new->name = ft_strdup(tmp[0]);
+		new->name = ft_strtrim(tmp[0]);
 		new->x = ft_atoi(tmp[1]);
 		new->y = ft_atoi(tmp[2]);
 		new->weight = 0;

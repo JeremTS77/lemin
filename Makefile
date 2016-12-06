@@ -6,7 +6,7 @@
 #    By: jelefebv <jelefebv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/20 15:14:26 by jelefebv          #+#    #+#              #
-#    Updated: 2016/12/01 18:33:35 by jelefebv         ###   ########.fr        #
+#    Updated: 2016/12/05 16:33:41 by jelefebv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ LIBFT_LIB	=	libft/libft.a
 SRCBASE		=	\
 				algo.c														\
 				clean.c														\
+				end.c														\
 				list_salle.c												\
 				list_tube.c													\
 				main.c														\

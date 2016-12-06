@@ -6,14 +6,12 @@
 /*   By: jelefebv <jelefebv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 11:28:54 by jelefebv          #+#    #+#             */
-/*   Updated: 2016/11/09 17:39:55 by jelefebv         ###   ########.fr       */
+/*   Updated: 2016/12/05 12:57:16 by jelefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 #include "libft.h"
-
-#include <stdio.h>
 
 static int		ft_find_tubename_in_room(const char *str, const t_salle *room)
 {
@@ -28,14 +26,14 @@ static int		ft_find_tubename_in_room(const char *str, const t_salle *room)
 	return (1);
 }
 
-static	char		*ft_strjoinlemin(const char *s1, const char *s2)
+static char		*ft_strjoinlemin(const char *s1, const char *s2)
 {
 	char	*tmp;
 	int		i;
 	int		j;
 
 	tmp = ft_strnew(ft_strlen(s1) + ft_strlen(s2) + 2);
-	if ((i = 0) && (j = 0) && s1 && *s1)
+	if ((i = 0) && s1 && *s1)
 	{
 		while (s1[i])
 		{
@@ -44,7 +42,7 @@ static	char		*ft_strjoinlemin(const char *s1, const char *s2)
 		}
 	}
 	tmp[i++] = '-';
-	if (s2 && *s2)
+	if (s2 && *s2 && (j = 0))
 	{
 		while (s2[j])
 		{
@@ -72,14 +70,14 @@ t_tube			*ft_new_tube(const char *str, const t_salle *room)
 	i = 0;
 	j = 0;
 	while (tmp[i + 1] && ft_find_tubename_in_room(tmp[0], room))
-		tmp[0] = ft_strjoinlemin(tmp[0], tmp[i++]);
+		tmp[0] = ft_strjoinlemin(ft_strtrim(tmp[0]), ft_strtrim(tmp[i++]));
 	j = ++i;
 	while (ft_find_tubename_in_room(tmp[j++], room) && tmp[j])
-		tmp[i] = ft_strjoinlemin(tmp[i], tmp[j]);
+		tmp[i] = ft_strjoinlemin(ft_strtrim(tmp[i]), ft_strtrim(tmp[j]));
 	if (tmp[0] && tmp[i] && !tmp[j])
 	{
-		new->enter = ft_strdup(tmp[0]);
-		new->exit = ft_strdup(tmp[i]);
+		new->enter = ft_strtrim(tmp[0]);
+		new->exit = ft_strtrim(tmp[i]);
 		new->next = NULL;
 	}
 	ft_strstrdel(tmp);

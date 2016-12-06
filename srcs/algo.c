@@ -6,7 +6,7 @@
 /*   By: jelefebv <jelefebv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 15:24:47 by jelefebv          #+#    #+#             */
-/*   Updated: 2016/12/01 23:23:38 by jeremy           ###   ########.fr       */
+/*   Updated: 2016/12/05 12:52:35 by jelefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,23 +50,21 @@ void		ft_rec(t_lem *lem, char *name, int index)
 	t_tube		*tmp_t;
 
 	tmp_t = lem->tube;
+	if ((tmp_s = ft_get_salle(lem->map, name)) != NULL)
+		tmp_s->weight = (index < tmp_s->weight) ? index : tmp_s->weight;
 	while (tmp_t)
 	{
-		if (ft_get_salle(lem->map, name) && !ft_strcmp(tmp_t->enter, name)
-				&& ft_get_salle(lem->map, name)->weight > index)
+		if (ft_get_salle(lem->map, tmp_t->exit)
+				&& !ft_strcmp(tmp_t->enter, name)
+				&& ft_get_salle(lem->map, tmp_t->exit)->weight > index)
 		{
-			tmp_s = ft_get_salle(lem->map, name);
-			tmp_s->weight = (index < tmp_s->weight) ? index : tmp_s->weight;
 			ft_rec(lem, tmp_t->exit, index + 1);
-			return ;
 		}
-		else if (ft_get_salle(lem->map, name) && !ft_strcmp(tmp_t->exit, name)
-				&& ft_get_salle(lem->map, name)->weight > index)
+		else if (ft_get_salle(lem->map, tmp_t->enter)
+				&& !ft_strcmp(tmp_t->exit, name)
+				&& ft_get_salle(lem->map, tmp_t->enter)->weight > index)
 		{
-			tmp_s = ft_get_salle(lem->map, name);
-			tmp_s->weight = (index < tmp_s->weight) ? index : tmp_s->weight;
 			ft_rec(lem, tmp_t->enter, index + 1);
-			return ;
 		}
 		tmp_t = tmp_t->next;
 	}
