@@ -6,7 +6,7 @@
 /*   By: jeremy <jeremy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/26 18:46:58 by jeremy            #+#    #+#             */
-/*   Updated: 2016/12/09 12:26:51 by jelefebv         ###   ########.fr       */
+/*   Updated: 2016/12/09 17:54:30 by jelefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_construct_struct(t_lem *lem)
 	flag = -1;
 	str = NULL;
 	ptr = NULL;
-	while (get_next_line(0, &str) > 0)
+	while (get_next_line(0, &str) > 0 && *str)
 	{
 		if (flag == -2)
 			ft_rec_command(lem, ptr, str, &flag);
