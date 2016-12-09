@@ -6,14 +6,14 @@
 /*   By: jelefebv <jelefebv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 16:25:33 by jelefebv          #+#    #+#             */
-/*   Updated: 2016/12/09 12:27:27 by jelefebv         ###   ########.fr       */
+/*   Updated: 2016/12/09 14:52:45 by jelefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 #include "ft_printf.h"
 
-void		ft_push_back(t_salle **new, t_salle *tmp)
+void	ft_push_back(t_salle **new, t_salle *tmp)
 {
 	t_salle		*begin;
 	t_salle		*yolo;
@@ -39,7 +39,7 @@ void		ft_push_back(t_salle **new, t_salle *tmp)
 	}
 }
 
-void		ft_sort(t_salle **lst, int nb)
+void	ft_sort(t_salle **lst, int nb)
 {
 	t_salle		*tmp;
 	t_salle		*new;
@@ -62,7 +62,7 @@ void		ft_sort(t_salle **lst, int nb)
 	*lst = new;
 }
 
-char		*ft_get_salle_wght(t_salle *lst, int weight)
+char	*ft_get_salle_wght(t_salle *lst, int weight)
 {
 	t_salle		*tmp;
 
@@ -103,7 +103,7 @@ char	*ft_yolo(t_salle *lst, t_tube *tube, char *endname, int x)
 	return (endname);
 }
 
-void		ft_print_resolve(t_salle *lst, t_tube *tube, char *endname,
+void	ft_print_resolve(t_salle *lst, t_tube *tube, char *endname,
 		int nb)
 {
 	int		i;

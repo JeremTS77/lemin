@@ -6,7 +6,7 @@
 /*   By: jelefebv <jelefebv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/07 11:15:51 by jelefebv          #+#    #+#             */
-/*   Updated: 2016/12/01 18:10:57 by jelefebv         ###   ########.fr       */
+/*   Updated: 2016/12/09 14:52:01 by jelefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 void	ft_strdel(char **as)
 {
-		if (as != NULL && *as != NULL)
-		{
-			free(*as);
-			*as = NULL;
-		}
+	if (as != NULL && *as != NULL)
+	{
+		free(*as);
+		*as = NULL;
+	}
 }
