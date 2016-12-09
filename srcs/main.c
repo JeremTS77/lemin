@@ -6,7 +6,7 @@
 /*   By: jeremy <jeremy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/26 18:46:58 by jeremy            #+#    #+#             */
-/*   Updated: 2016/12/07 17:44:37 by jelefebv         ###   ########.fr       */
+/*   Updated: 2016/12/09 12:26:51 by jelefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ int		main(void)
 	ft_check_error(&lst, &countroom);
 	ft_sort(&lst.map, countroom - 1);
 	ft_print_lemin(lst);
-	ft_print_resolve(lst.map, lst.nb_fourmis,
-			ft_get_salle(lst.map, lst.end)->weight);
+	ft_print_resolve(lst.map, lst.tube, lst.end, lst.nb_fourmis);
 	return (0);
 }

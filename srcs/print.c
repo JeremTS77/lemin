@@ -6,7 +6,7 @@
 /*   By: jelefebv <jelefebv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 16:25:12 by jelefebv          #+#    #+#             */
-/*   Updated: 2016/12/07 18:02:03 by jelefebv         ###   ########.fr       */
+/*   Updated: 2016/12/09 12:28:00 by jelefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	ft_print_lemin(t_lem l)
 	l.nb_fourmis, l.start, l.startx, l.starty, l.end, l.endx, l.endy);
 	while (l.map)
 	{
-//			ft_printf("%s %d %d %d\n", l.map->name, l.map->x, l.map->y, l.map->weight);
 		if (ft_strcmp(l.map->name, l.start) && ft_strcmp(l.map->name, l.end))
 			ft_printf("%s %d %d\n", l.map->name, l.map->x, l.map->y);
 		l.map = l.map->next;

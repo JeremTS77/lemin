@@ -6,14 +6,14 @@
 /*   By: jelefebv <jelefebv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 16:25:33 by jelefebv          #+#    #+#             */
-/*   Updated: 2016/12/07 18:11:28 by jelefebv         ###   ########.fr       */
+/*   Updated: 2016/12/09 12:27:27 by jelefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 #include "ft_printf.h"
 
-void	ft_push_back(t_salle **new, t_salle *tmp)
+void		ft_push_back(t_salle **new, t_salle *tmp)
 {
 	t_salle		*begin;
 	t_salle		*yolo;
@@ -39,7 +39,7 @@ void	ft_push_back(t_salle **new, t_salle *tmp)
 	}
 }
 
-void	ft_sort(t_salle **lst, int nb)
+void		ft_sort(t_salle **lst, int nb)
 {
 	t_salle		*tmp;
 	t_salle		*new;
@@ -48,7 +48,7 @@ void	ft_sort(t_salle **lst, int nb)
 	i = 0;
 	tmp = *lst;
 	new = NULL;
-	while (i < nb)
+	while (i <= nb)
 	{
 		while (tmp)
 		{
@@ -62,10 +62,12 @@ void	ft_sort(t_salle **lst, int nb)
 	*lst = new;
 }
 
-char	*ft_get_salle_weight(t_salle *lst, int weight)
+char		*ft_get_salle_wght(t_salle *lst, int weight)
 {
 	t_salle		*tmp;
 
+	if (!lst || !lst->name)
+		return (NULL);
 	tmp = lst;
 	while (tmp)
 	{
@@ -76,7 +78,33 @@ char	*ft_get_salle_weight(t_salle *lst, int weight)
 	return (NULL);
 }
 
-void	ft_print_resolve(t_salle *lst, int nb, int end)
+char	*ft_yolo(t_salle *lst, t_tube *tube, char *endname, int x)
+{
+	char	*s1;
+	char	*s2;
+	t_tube	*begin;
+
+	s1 = ft_get_salle_wght(lst, x);
+	if (x >= ft_get_salle(lst, endname)->weight && !ft_strcmp(s1, endname))
+		return (s1);
+	while (lst)
+	{
+		s2 = ft_get_salle_wght(lst, x + 1);
+		begin = tube;
+		while (begin)
+		{
+			if ((!ft_strcmp(begin->enter, s1) && !ft_strcmp(begin->exit, s2)) ||
+				(!ft_strcmp(begin->enter, s2) && !ft_strcmp(begin->exit, s1)))
+				return (s1);
+			begin = begin->next;
+		}
+		lst = lst->next;
+	}
+	return (endname);
+}
+
+void		ft_print_resolve(t_salle *lst, t_tube *tube, char *endname,
+		int nb)
 {
 	int		i;
 	int		*f;
@@ -86,15 +114,15 @@ void	ft_print_resolve(t_salle *lst, int nb, int end)
 		return ;
 	while (i != nb)
 		f[i++] = 0;
-	while (f[nb - 1] != end)
+	while (f[nb - 1] != ft_get_salle(lst, endname)->weight)
 	{
 		i = 0;
 		while (i < nb)
 		{
-			if (f[i] != end)
+			if (f[i] != ft_get_salle(lst, endname)->weight)
 			{
 				f[i] += 1;
-				ft_printf("L%d-%s ", i + 1, ft_get_salle_weight(lst, f[i]));
+				ft_printf("L%d-%s ", i + 1, ft_yolo(lst, tube, endname, f[i]));
 				if (f[i] == 1)
 					break ;
 			}

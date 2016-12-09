@@ -6,7 +6,7 @@
 /*   By: jeremy <jeremy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 16:15:20 by jeremy            #+#    #+#             */
-/*   Updated: 2016/12/07 16:02:59 by jelefebv         ###   ########.fr       */
+/*   Updated: 2016/12/09 10:24:44 by jelefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ void					ft_rec(t_lem *lem, char *name, int index);
 void					ft_count_room(t_salle *room, int *c);
 void					ft_check_error(t_lem *lem, int *c);
 void					ft_putendl_fd_exit(const char *error, int fd);
-void					ft_print_resolve(t_salle *lst, int nb, int end);
+void					ft_print_resolve(t_salle *lst, t_tube *tube,
+		char *endname, int nb);
 void					ft_sort(t_salle **lst, int nb);
 
 #endif
